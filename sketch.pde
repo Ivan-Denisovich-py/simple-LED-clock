@@ -1,9 +1,9 @@
 /**
-*A simple digital clock on APDE 
+*A simple digital clock on APDE (Processing on Android)
 by anusha-exe
-*Inspired from Coding Train video 
+*Inspired from The Coding Train video 
 on seven-segment display by Daniel Shiffman
-*Acknowledgments: Ivan Denisovich-py (Guido The Guidebook)
+*Acknowledgments: Ivan-Denisovich-py (Guido The Guidebook)
 *Works fine on my phone but
  if it's a laptop, you might
  want to scale it down by 0.5 in draw()
@@ -13,11 +13,12 @@ on seven-segment display by Daniel Shiffman
 int nums[]={0x7E,0x30,0x6D,0x79,0x33,0x5B,0x5F,0x70,0x7F,0x7B};
 
 //Real Time
-int h=hour()/10;
-int r=hour()%10;
-int m=minute()/10;
-int n=minute()%10;
-int sec=second();
+int h;
+int r;
+int m;
+int n;
+int sec;
+
 //rect variables
 int l_rect=130;
 int b_rect=40;
@@ -35,6 +36,13 @@ void draw()
 {
   background (0);
   strokeWeight(2);
+  //Checking time
+  h=hour()/10;
+  r=hour()%10;
+  m=minute()/10;
+  n=minute()%10;
+  sec=second();
+
   //four numbers
   seven_seg(nums[h], xpoint + 0*(180+l_rect)-100, ypoint, l_rect, b_rect);
   seven_seg(nums[r], xpoint + 1*(180+l_rect)-100, ypoint, l_rect, b_rect);
@@ -46,33 +54,6 @@ void draw()
   fill(220,0,0,70);
   rect(xpoint + 1*(180+l_rect)+180, ypoint+100, 60,60, 50);
   rect(xpoint + 1*(180+l_rect)+180, ypoint+240, 60, 60,50);
-  //minute change
-  if((frameCount+sec+1)%60==0)
-  {
-  n++;
-  if(n==10)
-  {
-  n=0;
-  m++;
-  if(m==7)
-  m=0;
-   }
-  }
-  //hour change
-  if((frameCount+sec+1)%3600==0)
-  {
-    r++;
-    if(h<2)
-    if(r==10)
-    {
-      r=0;
-      h++;
-      }
-      if(h==3 && r>3){
-      h=0;
-      r=0;
-    }
-  }
   
  
   }
